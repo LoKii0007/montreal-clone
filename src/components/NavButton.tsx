@@ -54,7 +54,7 @@ const NavButton = ({ text }: { text: string }) => {
             if (el) wordRef.current[i] = el;
           }}
           key={i}
-          className="transition-all duration-150 font-(--font-inter) capitalize"
+          className="transition-all duration-150 font-(--font-inter) capitalize text-base"
         >
           {letter}
         </span>

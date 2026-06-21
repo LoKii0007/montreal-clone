@@ -80,7 +80,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="flex w-full justify-center items-center z-50 sticky top-0">
+      <nav className="flex w-full justify-center items-center z-50 sticky top-0 ">
         <div className="w-full p-4 flex justify-between items-center">
           <button className="bg-white text-black px-4 py-2 rounded-full font-semibold">
             <Image
@@ -90,7 +90,7 @@ const Navbar = () => {
               alt="bg"
             />
           </button>
-          <div className="px-5 py-3 bg-white rounded-full text-black">
+          <div className="px-5 py-3 bg-white rounded-full text-black lg:block hidden">
             <ul className="flex gap-4">
               {navLinks.map((nav) => (
                 <NavButton key={nav.href} text={nav.label} />
@@ -109,13 +109,17 @@ const Navbar = () => {
                 animate={hovered ? "visible" : "hidden"}
                 className=""
               >
-                {"Get PP Neue Montreal".split("").map((letter, i) => (
-                  <span key={i} className="inline-block overflow-hidden">
-                    <motion.span className="inline-block" variants={child}>
-                      {letter}
-                    </motion.span>
-                  </span>
-                ))}
+                {"Get PP Neue Montreal".split("").map((letter, i) =>
+                  letter === " " ? (
+                    <span key={i}>&nbsp;</span>
+                  ) : (
+                    <span key={i} className="inline-block overflow-hidden">
+                      <motion.span className="inline-block" variants={child}>
+                        {letter}
+                      </motion.span>
+                    </span>
+                  )
+                )}
               </motion.div>
               <motion.div
                 variants={container}
@@ -123,16 +127,17 @@ const Navbar = () => {
                 animate={hovered ? "visible" : "hidden"}
                 className="absolute top-0 left-0"
               >
-                {"Get PP Neue Montreal".split("").map((letter, i) => (
-                  <span key={i} className="inline-block overflow-hidden">
-                    <motion.span
-                      className="inline-block"
-                      variants={bottomChild}
-                    >
-                      {letter}
-                    </motion.span>
-                  </span>
-                ))}
+                {"Get PP Neue Montreal".split("").map((letter, i) =>
+                  letter === " " ? (
+                    <span key={i}>&nbsp;</span>
+                  ) : (
+                    <span key={i} className="inline-block overflow-hidden">
+                      <motion.span className="inline-block" variants={bottomChild}>
+                        {letter}
+                      </motion.span>
+                    </span>
+                  )
+                )}
               </motion.div>
             </div>
           </button>

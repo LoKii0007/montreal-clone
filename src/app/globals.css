@@ -42,3 +42,50 @@ Retrieved 2026-06-20, License - CC BY-SA 3.0
   -o-transition: all .5s;
   transition: all .5s;
 }
+
+.skew{
+  transform-origin:bottom center ;
+  animation: skew-1 3s linear infinite;
+}
+
+.skew-delay{
+  transform-origin:bottom center ;
+  animation: skew-2 3s linear infinite;
+}
+
+@keyframes skew-1 {
+  0% {
+    transform: skewX(0deg) ;
+  }
+  25% {
+    transform: skewX(0deg);
+  }
+  50% {
+    transform: skewX(-10deg);
+  }
+  75% {
+    transform: skewX(-10deg);
+  }
+  100% {
+    transform: skewX(0deg);
+  }
+}
+
+
+@keyframes skew-2 {
+  0% {
+    transform: skewX(-10deg);
+  }
+  25% {
+    transform: skewX(-10deg);
+  }
+  50% {
+    transform: skewX(0deg);
+  }
+  75% {
+    transform: skewX(0deg);
+  }
+  100% {
+    transform: skewX(-10deg);
+  }
+}

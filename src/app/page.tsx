@@ -1,5 +1,6 @@
 import HeroSection from "@/components/HeroSection";
 import StorySection from "@/components/StorySection";
+import UniversalSection from "@/components/universalSection";
 import Image from "next/image";
 
 export default function Home() {
@@ -7,7 +8,10 @@ export default function Home() {
     <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black relative">
       <HeroSection />
       <div className="h-screen"></div>
-      <StorySection />
+      <div className="relative z-20 bg-black">
+        <StorySection />
+        <UniversalSection />
+      </div>
     </div>
   );
 }

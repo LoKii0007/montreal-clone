@@ -1,4 +1,5 @@
 import HeroSection from "@/components/HeroSection";
+import PinSection from "@/components/PinSection";
 import StorySection from "@/components/StorySection";
 import UniversalSection from "@/components/universalSection";
 import Image from "next/image";
@@ -11,6 +12,10 @@ export default function Home() {
       <div className="relative z-20 bg-black">
         <StorySection />
         <UniversalSection />
+        <PinSection/>
+        <div className="w-full h-screen">
+          next
+        </div>
       </div>
     </div>
   );

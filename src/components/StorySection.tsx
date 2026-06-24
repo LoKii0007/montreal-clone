@@ -40,7 +40,7 @@ const textWeights = [
   { name: "+Italics", weight: 400, italic: true },
 ];
 
-const displayWeights = [
+export const displayWeights = [
   { name: "Hairline", weight: 100 },
   { name: "Extralight", weight: 200 },
   { name: "Thin", weight: 250 },

@@ -219,7 +219,7 @@ const PinSection = () => {
               >
                 <div
                   style={{ fontSize: stripWidth * 0.8 }}
-                  className=" border-r border-black p-2 relative"
+                  className=" border-r border-black p-2 relative overflow-hidden"
                 >
                   <div className="flex flex-col  justify-between translate-x-1/6 w-full h-full">
                     <div

@@ -2,12 +2,13 @@
 
 import Image from "next/image";
 import React from "react";
+import { motion } from "motion/react";
 import { useBreakpoint } from "@/hooks/useBreakpoint";
 
 const CIRCLE_CONFIG = {
-  sm:  { imgSize: 28, containerSize: 100 },
-  md:  { imgSize: 38, containerSize: 140 },
-  xl:  { imgSize: 46, containerSize: 180 },
+  sm: { imgSize: 28, containerSize: 100 },
+  md: { imgSize: 38, containerSize: 140 },
+  xl: { imgSize: 46, containerSize: 180 },
   "2xl": { imgSize: 54, containerSize: 217 },
 };
 
@@ -27,7 +28,16 @@ const HeroSection = () => {
           className="w-screen h-auto absolute z-10"
         />
         <div className="relative z-20 w-full h-full flex flex-col p-4 md:p-6 pt-20 md:pt-20">
-          <div className="shrink-0 flex justify-between pb-6 items-start">
+          <motion.div
+            initial={{ opacity: 0, y: "10%" }}
+            animate={{ opacity: 1, y: "0%" }}
+            transition={{
+              duration: 0.3,
+              ease: "easeInOut",
+              delay: 0.15 * 2,
+            }}
+            className="shrink-0 flex justify-between pb-6 items-start"
+          >
             <div className="text-white text-[2rem] sm:text-[3rem] md:text-[3.5rem] 2xl:text-[4.5rem] font-extrabold leading-[100%]">
               Official <br /> Travel Guide
             </div>
@@ -59,9 +69,18 @@ const HeroSection = () => {
                 );
               })}
             </div>
-          </div>
+          </motion.div>
 
-          <div className="text-black border-y border-black shrink-0 md:flex-1 text-base sm:text-lg md:text-xl 2xl:text-2xl pt-2 leading-[100%] flex items-start justify-between gap-4">
+          <motion.div
+            initial={{ opacity: 0, y: "10%" }}
+            animate={{ opacity: 1, y: "0%" }}
+            transition={{
+              duration: 0.3,
+              ease: "easeInOut",
+              delay: 0.15 * 1,
+            }}
+            className="text-black border-y border-black shrink-0 md:flex-1 text-base sm:text-lg md:text-xl 2xl:text-2xl pt-2 leading-[100%] flex items-start justify-between gap-4 h-full"
+          >
             <div className="pt-1">
               Everything you need to know to experience{" "}
               <br className="hidden md:block" />
@@ -76,21 +95,30 @@ const HeroSection = () => {
                 className="object-contain"
               />
             </div>
-          </div>
-
-          <div className="text-black text-[20vw] flex-1 flex flex-col-reverse md:flex-row gap-8 pb-2 justify-between xl:text-[15rem] -translate-x-1 2xl:-translate-x-4 font-extrabold shrink-0 leading-[80%] border-b tracking-[-2px] sm:tracking-[-4px] md:tracking-[-2%] 2xl:tracking-[-8px] transition-all items-center">
-            <div>
-              Neue <br /> Montreal
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: "10%" }}
+            animate={{ opacity: 1, y: "0%" }}
+            transition={{
+              duration: 0.3,
+              ease: "easeInOut",
+            }}
+            className="flex-1 h-full"
+          >
+            <div className="text-black text-[20vw] flex flex-col-reverse md:flex-row gap-8 pb-2 justify-between xl:text-[15rem] -translate-x-1 2xl:-translate-x-4 font-extrabold shrink-0 leading-[80%] border-b tracking-[-2px] sm:tracking-[-4px] md:tracking-[-2%] 2xl:tracking-[-8px] items-center h-full">
+              <div>
+                Neue <br /> Montreal
+              </div>
+              <div className="block w-full h-auto md:hidden xl:block lg:h-full lg:w-auto aspect-4/3 relative overflow-hidden my-3">
+                <Image
+                  src={"/images/card.webp"}
+                  fill
+                  alt="Montreal"
+                  className="object-contain"
+                />
+              </div>
             </div>
-            <div className="block w-full h-auto md:hidden xl:block lg:h-full lg:w-auto aspect-4/3 relative overflow-hidden my-3">
-              <Image
-                src={"/images/card.webp"}
-                fill
-                alt="Montreal"
-                className="object-contain"
-              />
-            </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </>

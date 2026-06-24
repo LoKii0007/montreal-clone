@@ -57,7 +57,7 @@ const Card3d = ({ children }: { children: React.ReactNode }) => {
           stiffness: 300,
           damping: 20,
         }}
-        className="w-full h-full"
+        className="w-full h-full "
       >
         {children}
       </motion.div>

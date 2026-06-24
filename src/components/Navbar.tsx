@@ -80,7 +80,16 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="flex w-full justify-center items-center z-50 sticky top-0 ">
+      <motion.nav
+        initial={{ opacity: 0, y: "10%" }}
+        animate={{ opacity: 1, y: "0%" }}
+        transition={{
+          duration: 0.3,
+          ease: "easeInOut",
+          delay: 0.15 * 3,
+        }}
+        className="flex w-full justify-center items-center z-50 sticky top-0 "
+      >
         <div className="w-full p-4 flex justify-between items-center">
           <button className="bg-white text-black px-4 py-2 rounded-full font-semibold">
             <Image
@@ -118,7 +127,7 @@ const Navbar = () => {
                         {letter}
                       </motion.span>
                     </span>
-                  )
+                  ),
                 )}
               </motion.div>
               <motion.div
@@ -132,17 +141,20 @@ const Navbar = () => {
                     <span key={i}>&nbsp;</span>
                   ) : (
                     <span key={i} className="inline-block overflow-hidden">
-                      <motion.span className="inline-block" variants={bottomChild}>
+                      <motion.span
+                        className="inline-block"
+                        variants={bottomChild}
+                      >
                         {letter}
                       </motion.span>
                     </span>
-                  )
+                  ),
                 )}
               </motion.div>
             </div>
           </button>
         </div>
-      </nav>
+      </motion.nav>
     </>
   );
 };

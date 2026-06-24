@@ -1,6 +1,7 @@
 "use client";
 
-import { useScroll, useTransform, motion } from "motion/react";
+import { useScreenSize } from "@/hooks/useScreenSize";
+import { useScroll, useTransform, motion, AnimatePresence } from "motion/react";
 import React, { useEffect, useRef, useState } from "react";
 
 export const displayWeights = [
@@ -46,13 +47,55 @@ const items = [
     heading: "Plateau Mont‑Royal",
     desc: "The Plateau is Montréal's most intensely alive neighbourhood. Lined with colourful triplexes, wrought-iron staircases, and corner dépanneurs, it radiates an effortless cool that no other city has quite managed to replicate. Artists, families, students and lifelong residents share its streets with an easy pride. Rue Mont-Royal and Avenue Laurier buzz with terrasses, record shops, and independent restaurants. The Plateau doesn't perform its identity, it simply lives it, one long summer evening at a time.",
   },
-  { id: 5, title: "Book", color: "#4e6cf6" },
-  { id: 6, title: "Regular", color: "#6259bf" },
-  { id: 7, title: "Medium", color: "#9a72d4" },
-  { id: 8, title: "Semibold", color: "#d85ab6" },
-  { id: 9, title: "Bold", color: "#b56f46" },
-  { id: 10, title: "Extrabold", color: "#bdbdbd" },
-  { id: 11, title: "Black", color: "#a7a7a7" },
+  {
+    id: 5,
+    title: "Book",
+    color: "#4e6cf6",
+    heading: "Plateau Mont‑Royal",
+    desc: "The Plateau is Montréal's most intensely alive neighbourhood. Lined with colourful triplexes, wrought-iron staircases, and corner dépanneurs, it radiates an effortless cool that no other city has quite managed to replicate. Artists, families, students and lifelong residents share its streets with an easy pride. Rue Mont-Royal and Avenue Laurier buzz with terrasses, record shops, and independent restaurants. The Plateau doesn't perform its identity, it simply lives it, one long summer evening at a time.",
+  },
+  {
+    id: 6,
+    title: "Regular",
+    color: "#6259bf",
+    heading: "Plateau Mont‑Royal",
+    desc: "The Plateau is Montréal's most intensely alive neighbourhood. Lined with colourful triplexes, wrought-iron staircases, and corner dépanneurs, it radiates an effortless cool that no other city has quite managed to replicate. Artists, families, students and lifelong residents share its streets with an easy pride. Rue Mont-Royal and Avenue Laurier buzz with terrasses, record shops, and independent restaurants. The Plateau doesn't perform its identity, it simply lives it, one long summer evening at a time.",
+  },
+  {
+    id: 7,
+    title: "Medium",
+    color: "#9a72d4",
+    heading: "Plateau Mont‑Royal",
+    desc: "The Plateau is Montréal's most intensely alive neighbourhood. Lined with colourful triplexes, wrought-iron staircases, and corner dépanneurs, it radiates an effortless cool that no other city has quite managed to replicate. Artists, families, students and lifelong residents share its streets with an easy pride. Rue Mont-Royal and Avenue Laurier buzz with terrasses, record shops, and independent restaurants. The Plateau doesn't perform its identity, it simply lives it, one long summer evening at a time.",
+  },
+  {
+    id: 8,
+    title: "Semibold",
+    color: "#d85ab6",
+    heading: "Plateau Mont‑Royal",
+    desc: "The Plateau is Montréal's most intensely alive neighbourhood. Lined with colourful triplexes, wrought-iron staircases, and corner dépanneurs, it radiates an effortless cool that no other city has quite managed to replicate. Artists, families, students and lifelong residents share its streets with an easy pride. Rue Mont-Royal and Avenue Laurier buzz with terrasses, record shops, and independent restaurants. The Plateau doesn't perform its identity, it simply lives it, one long summer evening at a time.",
+  },
+  {
+    id: 9,
+    title: "Bold",
+    color: "#b56f46",
+    heading: "Plateau Mont‑Royal",
+    desc: "The Plateau is Montréal's most intensely alive neighbourhood. Lined with colourful triplexes, wrought-iron staircases, and corner dépanneurs, it radiates an effortless cool that no other city has quite managed to replicate. Artists, families, students and lifelong residents share its streets with an easy pride. Rue Mont-Royal and Avenue Laurier buzz with terrasses, record shops, and independent restaurants. The Plateau doesn't perform its identity, it simply lives it, one long summer evening at a time.",
+  },
+  {
+    id: 10,
+    title: "Extrabold",
+    color: "#bdbdbd",
+    heading: "Plateau Mont‑Royal",
+    desc: "The Plateau is Montréal's most intensely alive neighbourhood. Lined with colourful triplexes, wrought-iron staircases, and corner dépanneurs, it radiates an effortless cool that no other city has quite managed to replicate. Artists, families, students and lifelong residents share its streets with an easy pride. Rue Mont-Royal and Avenue Laurier buzz with terrasses, record shops, and independent restaurants. The Plateau doesn't perform its identity, it simply lives it, one long summer evening at a time.",
+  },
+  {
+    id: 11,
+    title: "Black",
+    color: "#a7a7a7",
+    heading: "Plateau Mont‑Royal",
+    desc: "The Plateau is Montréal's most intensely alive neighbourhood. Lined with colourful triplexes, wrought-iron staircases, and corner dépanneurs, it radiates an effortless cool that no other city has quite managed to replicate. Artists, families, students and lifelong residents share its streets with an easy pride. Rue Mont-Royal and Avenue Laurier buzz with terrasses, record shops, and independent restaurants. The Plateau doesn't perform its identity, it simply lives it, one long summer evening at a time.",
+  },
 ];
 
 const PinSection = () => {
@@ -63,6 +106,7 @@ const PinSection = () => {
   });
   const [wIndex, setWIndex] = useState(0);
   const [active, setActive] = useState(1);
+  const size = useScreenSize();
 
   const fontWeight = useTransform(scrollYProgress, [0, 1], [900, 100]);
   const fontWeightReverse = useTransform(scrollYProgress, [0, 1], [100, 900]);
@@ -86,8 +130,16 @@ const PinSection = () => {
         ref={containerRef}
         className="min-h-screen h-[250vh] w-full relative"
       >
-        <div className="h-screen  flex items-center justify-center sticky top-0">
-          <div className="flex flex-col max-w-3xl mx-auto font-(--font-inter) justify-center items-center text-[#ebebeb]">
+        <div className="h-screen  flex items-center justify-center sticky top-0 ">
+          <video
+            src="/videos/pinned-video.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute object-cover w-full h-full z-10 inset-0"
+          ></video>
+          <div className="flex relative z-20 flex-col max-w-3xl mx-auto font-(--font-inter) justify-center items-center text-[#ebebeb]">
             <motion.div
               style={{
                 fontWeight,
@@ -121,15 +173,13 @@ const PinSection = () => {
         </div>
       </div>
 
-      <section className="flex h-screen overflow-hidden bg-[#ece6d8]">
-        <div className="w-sm p-8 flex flex-col justify-between">
-          <h1 className="text-[7rem] leading-[0.9] font-light tracking-tight">
-            Must-See
-            <br />
-            Attractions
+      <section className="flex h-screen overflow-hidden bg-[#ece6d8] text-black">
+        <div className="w-[20vw] p-6 flex flex-col justify-between">
+          <h1 className="text-[7rem] leading-[0.9] font-light tracking-tight wrap-break-word">
+            Must-See Attractions
           </h1>
 
-          <p className="max-w-[360px] text-[1.75rem] leading-tight">
+          <p className="text-[1.75rem] leading-tight">
             Montréal is a city of contrasts, where centuries-old cobblestone
             meets bold brutalist architecture, and every neighbourhood tells a
             different story.
@@ -138,22 +188,24 @@ const PinSection = () => {
 
         <div className="flex-1 relative flex">
           {items.map((item, index) => {
+            const STRIPS = 14;
             const expanded = active === item.id;
+            const stripWidth = (size.width * 0.8) / STRIPS;
 
-            let x = expanded ? "300%" : "0%";
+            let x = "0px";
+            if (item.id > 1 && item.id <= active) {
+              x = `-${stripWidth * 3}px`;
+            }
 
-            // if (item.id > 1 && item.id < active) {
-            //   x -= SHIFT;
-            // }
             return (
               <motion.div
                 key={item.id}
                 onHoverStart={() => setActive(item.id)}
-                className="inset-y-0 border-l border-black/20 flex"
-                // animate={{
-                //   x,
-                //   // width: expanded ? EXPANDED : COLLAPSED,
-                // }}
+                onMouseLeave={() => setActive(1)}
+                className="inset-y-0 border-l border-black/20 absolute grid grid-cols-4 "
+                animate={{
+                  x,
+                }}
                 transition={{
                   type: "spring",
                   stiffness: 260,
@@ -161,22 +213,43 @@ const PinSection = () => {
                 }}
                 style={{
                   backgroundColor: item.color,
-                  left: index == 0 ? "0%" : `${((index + 3) * 100) / 11}%`,
-                  width: `${100 / 11}%}`,
+                  left: index == 0 ? "0%" : `${((index + 3) * 100) / STRIPS}%`,
+                  width: `${stripWidth * 4}px`,
                 }}
               >
-                <div className="flex flex-col relative justify-between">
-                  <div className="-rotate-90 ">{item.title}</div>
-                  <div className="-rotate-90 ">{item.id}</div>
-                </div>
                 <div
-                style={{
-                  position : index === 0 ? "relative" : "absolute"
-                }}
-                className="col-span-3 flex flex-col left-full">
-                  <div>{item?.heading}</div>
-                  <div>{item?.desc}</div>
+                  style={{ fontSize: stripWidth * 0.8 }}
+                  className=" border-r border-black p-2 relative"
+                >
+                  <div className="flex flex-col  justify-between translate-x-1/6 w-full h-full">
+                    <div
+                      style={{ fontWeight: displayWeights[item.id - 1].weight }}
+                      className="-rotate-90 absolute top-4 origin-top-right right-full leading-[120%]"
+                    >
+                      {item.title}
+                    </div>
+                    <div className="-rotate-90 absolute bottom-4 origin-bottom-left left-full leading-[120%] ">
+                      {item.id}
+                    </div>
+                  </div>
                 </div>
+                <AnimatePresence>
+                  <motion.div
+                    initial={{ x: "20%" }}
+                    animate={{
+                      x: expanded ? "0%" : "20%",
+                      transition: {
+                        ease: "linear",
+                      },
+                    }}
+                    className="col-span-3 flex flex-col h-full justify-between p-2"
+                  >
+                    <div className="text-5xl wrap-break-word">
+                      {item?.heading}
+                    </div>
+                    <div className="whitespace-break-spaces">{item?.desc}</div>
+                  </motion.div>
+                </AnimatePresence>
               </motion.div>
             );
           })}

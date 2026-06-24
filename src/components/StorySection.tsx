@@ -66,12 +66,15 @@ const container = {
 
 const childVariants = {
   hidden: {
-    y: "100%",
+    y: "10%",
     opacity: 0,
   },
   visible: {
     y: "0%",
     opacity: 1,
+    transition: {
+      ease: "linear" as const,
+    },
   },
 };
 
@@ -157,13 +160,19 @@ const StorySection = () => {
           </motion.div>
         </div>
         <div className="border-l border-white grid grid-rows-2 gap-8 p-12 overflow-hidden">
-          <div className="relative h-full w-full">
+          <div className="relative h-full w-full ">
             <Card3d>
               <Image
                 fill
                 alt="image"
                 src="/images/card.webp"
-                className="object-contain"
+                className="object-contain card-animation relative backface-hidden"
+              />
+              <Image
+                fill
+                alt="image"
+                src="/images/card-2.webp"
+                className="object-contain card-animation-reverse absolute backface-hidden"
               />
             </Card3d>
           </div>
@@ -173,7 +182,13 @@ const StorySection = () => {
                 fill
                 alt="image"
                 src="/images/card-2.webp"
-                className="object-contain"
+                className="object-contain card-animation relative backface-hidden"
+              />
+              <Image
+                fill
+                alt="image"
+                src="/images/card.webp"
+                className="object-contain card-animation-reverse absolute backface-hidden"
               />
             </Card3d>
           </div>

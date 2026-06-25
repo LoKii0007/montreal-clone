@@ -142,3 +142,37 @@ Retrieved 2026-06-20, License - CC BY-SA 3.0
     transform: rotateY(540deg);
   }
 }
+
+.font-animation{
+  animation: font-animate 5s ease-in-out infinite ;
+}
+
+.font-animation-reverse{
+  animation: font-animate-reverse 5s ease-in-out infinite ;
+}
+
+@keyframes font-animate {
+  0%, 35% {
+    font-weight: 100;
+  }
+
+  50%, 85% {
+    font-weight: 900;
+  }
+  100% {
+    font-weight: 100;
+  }
+}
+
+@keyframes font-animate-reverse {
+  0%, 35% {
+    font-weight: 900;
+  }
+
+  50%, 85% {
+    font-weight:100;
+  }
+  100% {
+    font-weight: 900;
+  }
+}

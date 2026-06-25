@@ -130,7 +130,7 @@ const PinSection = () => {
         ref={containerRef}
         className="min-h-screen h-[250vh] w-full relative"
       >
-        <div className="h-screen  flex items-center justify-center sticky top-0 ">
+        <div className="h-screen flex items-center justify-center sticky top-0 ">
           <video
             src="/videos/pinned-video.mp4"
             autoPlay
@@ -255,6 +255,10 @@ const PinSection = () => {
           })}
         </div>
       </section>
+      
+      <div className="h-16 bg-[#ece6d8]">
+
+      </div>
     </>
   );
 };

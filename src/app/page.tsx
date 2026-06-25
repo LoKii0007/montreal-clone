@@ -1,3 +1,4 @@
+import DisplayTextSection from "@/components/DisplayTextSection";
 import HeroSection from "@/components/HeroSection";
 import PinSection from "@/components/PinSection";
 import StorySection from "@/components/StorySection";
@@ -13,6 +14,7 @@ export default function Home() {
         <StorySection />
         <UniversalSection />
         <PinSection />
+        <DisplayTextSection />
       </div>
     </div>
   );

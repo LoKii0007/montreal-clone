@@ -1,7 +1,14 @@
 ﻿"use client";
 
-import { useScroll, motion, useTransform } from "motion/react";
-import React, { useRef, useState } from "react";
+import {
+  useScroll,
+  motion,
+  useTransform,
+  animate,
+  stagger,
+} from "motion/react";
+import Image from "next/image";
+import React, { useEffect, useRef, useState } from "react";
 
 const ligatures = [
   { pair: "ss", square: "#22c55e", circle: "#f9683a" },
@@ -36,14 +43,39 @@ const weights = {
 
 const DisplayTextSection = () => {
   const targetRef = useRef(null);
+  const languageRef = useRef(null);
   const [activeWeight, setActiveWeight] = useState("Black");
   const [mode, setMode] = useState<"Display" | "Text">("Display");
   const { scrollYProgress } = useScroll({
     target: targetRef,
-    offset: ["start start", "start -200%"],
+    offset: ["start end", "end end"],
   });
 
   const upperY = useTransform(scrollYProgress, [0, 1], ["0%", "-100%"]);
+
+  useEffect(() => {
+    animate(
+      ".stagger-item",
+      {
+        y: ["5%", "0%"],
+      },
+      {
+        delay: stagger(0.12),
+        repeat: Infinity,
+        repeatType: "reverse",
+        duration: 0.6,
+        ease: "easeInOut",
+      },
+    );
+  }, []);
+
+  const { scrollYProgress: languageYProgress } = useScroll({
+    target: languageRef,
+    offset: ["start end", "end end"],
+  });
+
+  const languageY = useTransform(languageYProgress, [0, 1], ["50%", "0%"]);
+  const scale = useTransform(languageYProgress, [0, 1], ["110%", "100%"]);
 
   return (
     <>
@@ -158,8 +190,8 @@ const DisplayTextSection = () => {
         ))}
       </div>
 
-      <div className="bg-[#f0e7d4] w-full py-6">
-      </div>
+      <div className="bg-[#f0e7d4] w-full py-6"></div>
+
       <div className="w-full bg-[#f0e7d4] text-black relative grid grid-cols-12 gap-6 p-6 border-t border-black min-h-[90vh]">
         <div className="col-span-3 flex flex-col justify-between">
           <h2 className="text-2xl font-bold leading-none">
@@ -222,6 +254,75 @@ const DisplayTextSection = () => {
           >
             Jovial QuÃ©bec fans mix waltz, bringing Expo 67 charm to MontrÃ©al.
           </p>
+        </div>
+      </div>
+
+      <div className="relative overflow-hidden">
+        <motion.div
+          style={{ scale, transition: "ease-in-out" }}
+          className="absolute w-full h-full z-0 "
+        >
+          <Image
+            src={"/images/worldwide.avif"}
+            fill
+            alt="image"
+            className="w-full h-auto object-cover"
+          />
+        </motion.div>
+        <div className="w-full relative z-20 min-h-screen overflow-hidden flex flex-col justify-center items-center">
+          <div className="-rotate-6 text-[#ff4000] ">
+            <div>
+              {"Already in Use,".split("").map((char, i) => (
+                <span
+                  key={i}
+                  className="stagger-item inline-block text-[14vw] leading-[80%] tracking-[-5%] font-bold"
+                >
+                  {char === " " ? " " : char}
+                </span>
+              ))}
+            </div>
+            <div className="">
+              {"Worldwide!".split("").map((char, i) => (
+                <span
+                  key={i}
+                  className="stagger-item inline-block text-[14vw] leading-none tracking-[-5%] font-bold"
+                >
+                  {char === " " ? " " : char}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div
+          ref={languageRef}
+          className="relative p-6 w-full min-h-screen flex items-end z-10 overflow-hidden"
+        >
+          <motion.div
+            style={{ y: languageY, transition: "ease-in-out" }}
+            className="max-w-xl flex flex-col gap-2 p-6 text-2xl text-[#f0e7d4] bg-[#ff4000]"
+          >
+            <div className="border-b border-white leading-none pb-2">
+              Languages
+            </div>
+            <div className="border-b border-white leading-none pb-2">
+              Continuously developed since its initial release, the typeface has
+              seen its range steadily expand. It now features a full weight
+              axis, from Hairline to Black, and supports Latin, Cyrillic, Greek,
+              and Arabic scripts, covering 506 languages and 3.4 billion
+              speakers.
+            </div>
+            <div className="grid grid-cols-2 leading-none">
+              <div>Language Support (506)</div>
+              <div>
+                Belarusian, Bosnian, Bulgarian, Chechen, Greek, Macedonian,
+                Russian, Serbian, Ukranian, Vietnamese, Afrikaans, Basque,
+                Breton, Catalan, Croatian, Czech, Danish, Dutch, English,
+                Estonian, Finnish, French, Gaelic, German, Hungarian, Icelandic,
+                Indonesian, Irish, Italian, Latvian, Lituanian, Norwegian,
+                Polish, Portuguese ... (and more)
+              </div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </>

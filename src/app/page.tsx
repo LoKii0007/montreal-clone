@@ -3,6 +3,7 @@ import HeroSection from "@/components/HeroSection";
 import PinSection from "@/components/PinSection";
 import StorySection from "@/components/StorySection";
 import UniversalSection from "@/components/universalSection";
+import VelocitySection from "@/components/VelocitySection";
 import Image from "next/image";
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
         <UniversalSection />
         <PinSection />
         <DisplayTextSection />
+        <VelocitySection/>
       </div>
     </div>
   );

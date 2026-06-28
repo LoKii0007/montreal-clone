@@ -1,10 +1,14 @@
 import DisplayTextSection from "@/components/DisplayTextSection";
+import ExpoCardsSection from "@/components/ExpoCardsSection";
+import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
 import PinSection from "@/components/PinSection";
+import PointSection from "@/components/PointSection";
 import StorySection from "@/components/StorySection";
+import TicketSection from "@/components/TicketSection";
 import UniversalSection from "@/components/universalSection";
+import VariantsSection from "@/components/VariantsSection";
 import VelocitySection from "@/components/VelocitySection";
-import Image from "next/image";
 
 export default function Home() {
   return (
@@ -17,6 +21,11 @@ export default function Home() {
         <PinSection />
         <DisplayTextSection />
         <VelocitySection/>
+        <TicketSection/>
+        <PointSection />
+        <ExpoCardsSection />
+        <VariantsSection />
+        <Footer />
       </div>
     </div>
   );

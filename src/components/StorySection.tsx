@@ -114,8 +114,8 @@ const StorySection = () => {
 
   return (
     <>
-      <div className="w-full min-h-screen grid grid-cols-2 relative">
-        <div className="flex flex-col justify-between border-r border-white p-6">
+      <div className="w-full min-h-screen grid grid-cols-1 md:grid-cols-2 relative">
+        <div className="flex flex-col justify-between border-b md:border-b-0 md:border-r border-white p-4 md:p-6">
           <div className="text-2xl mt-25">
             {" "}
             Refined, <br /> Reworked, <br />
@@ -126,7 +126,7 @@ const StorySection = () => {
             style={{
               scale: scale,
             }}
-            className="flex flex-col w-full text-[8.5vw] font-extrabold leading-[80%] tracking-[-7%] "
+            className="flex flex-col w-full text-[16vw] md:text-[8.5vw] font-extrabold leading-[80%] tracking-[-7%] "
           >
             <div className="[word-spacing:-1vw]">
               <span className="skew inline-block text-[#33A450]">Out</span>
@@ -159,14 +159,15 @@ const StorySection = () => {
             </div>
           </motion.div>
         </div>
-        <div className="border-l border-white grid grid-rows-2 gap-8 p-12 overflow-hidden">
-          <div className="relative h-full w-full ">
+        <div className="md:border-l border-white grid grid-rows-2 gap-8 p-12 overflow-hidden">
+          <div className="relative h-full w-full min-h-[320px]">
             <Card3d>
               <Image
                 fill
                 alt="image"
                 src="/images/card.webp"
-                className="object-contain card-animation relative backface-hidden"
+                className="object-contain card-animation relative backface-hidden "
+                
               />
               <Image
                 fill
@@ -195,12 +196,12 @@ const StorySection = () => {
         </div>
       </div>
 
-      <div className="min-h-screen flex flex-col gap-8 p-6 text-[#f0e7d4] text-2xl justify-between">
+      <div className="min-h-screen flex flex-col gap-8 p-4 md:p-6 text-[#f0e7d4] text-sm md:text-2xl justify-between">
         <div className="flex flex-col">
           <div className="">Story</div>
           <div className="w-full my-2 h-px bg-[#f0e7d4]"></div>
-          <div className="grid grid-cols-10 ">
-            <div className="col-span-4 flex flex-col gap-8 pr-6">
+          <div className="grid grid-cols-1 md:grid-cols-10 gap-4 md:gap-0">
+            <div className="md:col-span-4 flex flex-col gap-8 pr-6">
               <p>
                 PP Neue Montreal is a neo-grotesk sans-serif typeface that
                 reflects the design sensibilities of Montreal, Canada. Its clean
@@ -218,8 +219,8 @@ const StorySection = () => {
                 modernity and refinement.
               </p>
             </div>
-            <div className="col-span-3 grid grid-cols-2 ps-2 border-l border-[#f0e7d4]">
-              <p>Text</p>
+            <div className="md:col-span-3 pt-2 md:pt-0 grid grid-cols-2 md:ps-2 border-t md:border-l md:border-t-0 border-[#f0e7d4]">
+              <p className="">Text</p>
               <motion.ul
                 variants={container}
                 initial={"hidden"}
@@ -230,8 +231,8 @@ const StorySection = () => {
                 ))}
               </motion.ul>
             </div>
-            <div className="col-span-3 grid grid-cols-2 ps-2 border-l border-[#f0e7d4]">
-              <p>Display</p>
+            <div className="md:col-span-3 pt-2 md:pt-0 grid grid-cols-2 md:ps-2 border-t md:border-t-0 md:border-l border-[#f0e7d4]">
+              <p className="">Display</p>
               <motion.ul
                 variants={container}
                 initial={"hidden"}

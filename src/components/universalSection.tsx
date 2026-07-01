@@ -104,7 +104,7 @@ const UniversalSection = () => {
       <div className="relative flex min-h-[100vw] w-full items-center justify-center overflow-hidden">
         <div
           ref={centerTextRef}
-          className="relative flex w-fit items-center justify-center overflow-visible p-12 text-8xl font-medium leading-[90%] tracking-[-0.05em] text-[#ebebeb]"
+          className="relative flex w-fit items-center justify-center overflow-visible p-12 text-[8vw] font-medium leading-[90%] tracking-[-0.05em] text-[#ebebeb]"
         >
           <div className="relative z-10">
             <div ref={desc1Ref} className="overflow-hidden">

@@ -79,7 +79,7 @@ const HeroSection = () => {
               ease: "easeInOut",
               delay: 0.15 * 1,
             }}
-            className="text-black border-y border-black shrink-0 md:flex-1 text-base sm:text-lg md:text-xl 2xl:text-2xl pt-2 leading-[100%] flex items-start justify-between gap-4 h-full"
+            className="text-black border-y border-black shrink-0 md:flex-1 text-base sm:text-lg md:text-xl 2xl:text-2xl pt-2 leading-[100%] flex items-start justify-between gap-4"
           >
             <div className="pt-1">
               Everything you need to know to experience{" "}
@@ -103,7 +103,7 @@ const HeroSection = () => {
               duration: 0.3,
               ease: "easeInOut",
             }}
-            className="flex-1 h-full"
+            className="flex-1 h-full shrink-0"
           >
             <div className="text-black text-[20vw] flex flex-col-reverse md:flex-row gap-8 pb-2 justify-between xl:text-[15rem] -translate-x-1 2xl:-translate-x-4 font-extrabold shrink-0 leading-[80%] border-b tracking-[-2px] sm:tracking-[-4px] md:tracking-[-2%] 2xl:tracking-[-8px] items-center h-full">
               <div>

@@ -79,12 +79,12 @@ const DisplayTextSection = () => {
 
   return (
     <>
-      <div className="bg-[#f0e7d4] text-black p-6 relative text-2xl ">
-        <div className="w-full grid grid-cols-3 py-6 border-t border-black">
+      <div className="bg-[#f0e7d4] text-black p-4 md:p-6 relative text-sm md:text-2xl ">
+        <div className="w-full grid grid-cols-1 md:grid-cols-3 py-6 border-t border-black space-y-6">
           <div>
             See the difference between <br /> display and text
           </div>
-          <div className="col-start-3">
+          <div className="md:col-start-3">
             Neue Montreal is a contemporary grotesque designed for versatility
             across sizes. At display scale, its geometric structure commands
             attention. At text size, it retreats into readability; balanced,
@@ -106,6 +106,7 @@ const DisplayTextSection = () => {
           </div>
         </div>
       </div>
+
       <div
         ref={targetRef}
         className="h-[300vh] bg-[#f0e7d4] text-black relative w-full"
@@ -151,12 +152,13 @@ const DisplayTextSection = () => {
           </div>
         </div>
       </div>
-      <div className="w-full bg-[#f0e7d4] text-black relative flex justify-between p-6">
-        <div className="text-7xl font-bold leading-none max-w-1/2">
+
+      <div className="w-full bg-[#f0e7d4] space-y-4 text-black relative flex flex-col md:justify-between p-4 md:p-6">
+        <div className="text-3xl md:text-7xl font-bold leading-none md:max-w-1/2">
           <h1>The Art of Letters</h1>
           <h1>Coming Together</h1>
         </div>
-        <div className="col-start-3 leading-none max-w-2/5 text-2xl">
+        <div className="col-start-3 leading-none md:max-w-2/5 text-sm md:text-2xl">
           <p>
             Where two letters become one. PP Neue MontrÃ©al's ligatures are
             quietly refined designed to let text flow without interruption,
@@ -166,11 +168,11 @@ const DisplayTextSection = () => {
         </div>
       </div>
 
-      <div className="w-full bg-[#f0e7d4] grid grid-cols-3 ">
+      <div className="w-full bg-[#f0e7d4] grid grid-cols-1 md:grid-cols-3 ">
         {ligatures.map(({ pair, square, circle }) => (
           <div
             key={pair}
-            className="aspect-square flex items-center justify-center group overflow-hidden relative text-[20vw]"
+            className="aspect-square flex items-center justify-center group overflow-hidden relative text-[50vw] md:text-[20vw]"
             style={{ backgroundColor: square }}
           >
             <div
@@ -192,59 +194,19 @@ const DisplayTextSection = () => {
 
       <div className="bg-[#f0e7d4] w-full py-6"></div>
 
-      <div className="w-full bg-[#f0e7d4] text-black relative grid grid-cols-12 gap-6 p-6 border-t border-black min-h-[90vh]">
-        <div className="col-span-3 flex flex-col justify-between">
-          <h2 className="text-2xl font-bold leading-none">
-            Weights
-            <br />
-            Chart
-          </h2>
+      <div className="w-full bg-[#f0e7d4] text-black relative flex flex-col gap-10 md:grid md:grid-cols-12 md:grid-rows-[auto_1fr] md:gap-6 p-4 md:p-6 border-t border-black min-h-[90vh]">
+        <h2 className="text-2xl font-bold leading-none md:col-span-3 md:col-start-1 md:row-start-1">
+          Weights
+          <br />
+          Chart
+        </h2>
 
-          <div className="space-y-16">
-            <div className="flex flex-col gap-1 text-2xl font-bold">
-              {weights[mode].map(({ name, value }) => (
-                <button
-                  key={name}
-                  type="button"
-                  onMouseEnter={() => setActiveWeight(name)}
-                  className={`text-left transition-colors w-fit ${
-                    activeWeight === name ? "text-black" : "text-black/35"
-                  }`}
-                  style={{ fontWeight: value }}
-                >
-                  {name}
-                </button>
-              ))}
-            </div>
-
-            <div className="flex gap-3 text-2xl font-bold">
-              {(["Display", "Text"] as const).map((m) => (
-                <button
-                  key={m}
-                  type="button"
-                  onMouseEnter={() => {
-                    setMode(m);
-                    if (!weights[m].some((w) => w.name === activeWeight)) {
-                      setActiveWeight(weights[m][weights[m].length - 1].name);
-                    }
-                  }}
-                  className={`transition-colors ${
-                    mode === m ? "text-black underline" : "text-black/35"
-                  }`}
-                >
-                  {m}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <div className="col-span-9 flex items-end text-right">
+        <div className="flex items-start md:items-end justify-end text-right md:col-span-9 md:col-start-4 md:row-start-1 md:row-span-2">
           <p
             className={`leading-[0.95] ${
               mode === "Display"
-                ? "text-[8vw] tracking-tight"
-                : "text-[6vw] tracking-normal"
+                ? "text-[12vw] md:text-[8vw] tracking-tight"
+                : "text-[10vw] md:text-[6vw] tracking-normal"
             }`}
             style={{
               fontWeight:
@@ -255,9 +217,61 @@ const DisplayTextSection = () => {
             Jovial QuÃ©bec fans mix waltz, bringing Expo 67 charm to MontrÃ©al.
           </p>
         </div>
+
+        <div className="space-y-10 md:space-y-16 md:col-span-3 md:col-start-1 md:row-start-2 md:self-end">
+          <div
+            className="grid grid-flow-col gap-x-6 gap-y-1 md:flex md:flex-col text-2xl font-bold"
+            style={{
+              gridTemplateRows: `repeat(${Math.ceil(
+                weights[mode].length / 2,
+              )}, minmax(0, 1fr))`,
+            }}
+          >
+            {weights[mode].map(({ name, value }) => (
+              <button
+                key={name}
+                type="button"
+                onMouseEnter={() => setActiveWeight(name)}
+                onClick={() => setActiveWeight(name)}
+                className={`text-left transition-colors w-fit ${
+                  activeWeight === name ? "text-black" : "text-black/35"
+                }`}
+                style={{ fontWeight: value }}
+              >
+                {name}
+              </button>
+            ))}
+          </div>
+
+          <div className="flex gap-3 text-2xl font-bold">
+            {(["Display", "Text"] as const).map((m) => (
+              <button
+                key={m}
+                type="button"
+                onMouseEnter={() => {
+                  setMode(m);
+                  if (!weights[m].some((w) => w.name === activeWeight)) {
+                    setActiveWeight(weights[m][weights[m].length - 1].name);
+                  }
+                }}
+                onClick={() => {
+                  setMode(m);
+                  if (!weights[m].some((w) => w.name === activeWeight)) {
+                    setActiveWeight(weights[m][weights[m].length - 1].name);
+                  }
+                }}
+                className={`transition-colors ${
+                  mode === m ? "text-black underline" : "text-black/35"
+                }`}
+              >
+                {m}
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
 
-      <div className="relative overflow-hidden">
+      <div className="relative overflow-hidden min-h-screen justify-between flex flex-col">
         <motion.div
           style={{ scale, transition: "ease-in-out" }}
           className="absolute w-full h-full z-0 "
@@ -269,7 +283,7 @@ const DisplayTextSection = () => {
             className="w-full h-auto object-cover"
           />
         </motion.div>
-        <div className="w-full relative z-20 min-h-screen overflow-hidden flex flex-col justify-center items-center">
+        <div className="w-full relative pt-16 z-20 md:min-h-screen  flex flex-col justify-center items-center h-full">
           <div className="-rotate-6 text-[#ff4000] ">
             <div>
               {"Already in Use,".split("").map((char, i) => (
@@ -295,11 +309,11 @@ const DisplayTextSection = () => {
         </div>
         <div
           ref={languageRef}
-          className="relative p-6 w-full min-h-screen flex items-end z-10 overflow-hidden"
+          className="relative p-4 md:p-6 w-full md:min-h-screen flex items-end z-10 overflow-hidden"
         >
           <motion.div
             style={{ y: languageY, transition: "ease-in-out" }}
-            className="max-w-xl flex flex-col gap-2 p-6 text-2xl text-[#f0e7d4] bg-[#ff4000]"
+            className="max-w-xl flex flex-col gap-2 p-4 md:p-6 text-sm md:text-2xl text-[#f0e7d4] bg-[#ff4000]"
           >
             <div className="border-b border-white leading-none pb-2">
               Languages

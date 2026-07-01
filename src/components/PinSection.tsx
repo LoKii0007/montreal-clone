@@ -106,6 +106,7 @@ const PinSection = () => {
   });
   const [wIndex, setWIndex] = useState(0);
   const [active, setActive] = useState(1);
+  const [openId, setOpenId] = useState<number | null>(null);
   const size = useScreenSize();
 
   const fontWeight = useTransform(scrollYProgress, [0, 1], [900, 100]);
@@ -128,9 +129,9 @@ const PinSection = () => {
     <>
       <div
         ref={containerRef}
-        className="min-h-screen h-[250vh] w-full relative"
+        className="min-h-screen h-[250vh] w-full relative "
       >
-        <div className="h-screen flex items-center justify-center sticky top-0 ">
+        <div className="h-screen flex items-center justify-center sticky top-0 overflow-hidden">
           <video
             src="/videos/pinned-video.mp4"
             autoPlay
@@ -146,8 +147,8 @@ const PinSection = () => {
               }}
               className="text-center"
             >
-              <h6 className="text-sm">{displayWeights[wIndex].name}</h6>
-              <h1 className="text-[84px] text-center leading-[80%] tracking-[-5%] whitespace-nowrap">
+              <h6 className="text-[10px] md:text-sm">{displayWeights[wIndex].name}</h6>
+              <h1 className="text-3xl md:text-[84px] text-center leading-[80%] tracking-[-5%] whitespace-nowrap">
                 From Vieux-Montreal <br /> to Neue-Montreal
               </h1>
             </motion.div>
@@ -157,7 +158,7 @@ const PinSection = () => {
               }}
               className="text-center"
             >
-              <h4 className="w-full max-w-2xl mx-auto text-center">
+              <h4 className="w-full max-w-2xl mx-auto text-center text-[13px] md:text-base">
                 Montreal is a vibrant city where North American energy meets
                 European charm. Located on an island in the Saint Lawrence
                 River, it is known for its rich history, diverse culture, and
@@ -167,14 +168,14 @@ const PinSection = () => {
                 other languages can be heard throughout its neighborhoods,
                 giving the city an international feel.
               </h4>
-              <p>Text {displayWeights[10 - wIndex].name}</p>
+              <p className="text-[10px] md:text-base">Text {displayWeights[10 - wIndex].name}</p>
             </motion.div>
           </div>
         </div>
       </div>
 
-      <section className="flex h-screen overflow-hidden bg-[#ece6d8] text-black">
-        <div className="w-[20vw] p-6 flex flex-col justify-between">
+      <section className="hidden lg:flex h-screen overflow-hidden bg-[#ece6d8] text-black">
+        <div className="w-[20vw] p-4 md:p-6 flex flex-col justify-between">
           <h1 className="text-[7rem] leading-[0.9] font-light tracking-tight wrap-break-word">
             Must-See Attractions
           </h1>
@@ -255,7 +256,82 @@ const PinSection = () => {
           })}
         </div>
       </section>
-      
+
+      {/* Mobile / tablet: stacked accordion list */}
+      <section className="lg:hidden bg-[#ece6d8] text-black">
+        <div className="px-5 pt-10 pb-8 flex flex-col gap-8">
+          <h1 className="text-[3.5rem] sm:text-[5rem] leading-[0.9] font-light tracking-tight wrap-break-word">
+            Must-See Attractions
+          </h1>
+
+          <p className="text-lg sm:text-2xl leading-tight">
+            Montréal is a city of contrasts, where centuries-old cobblestone
+            meets bold brutalist architecture, and every neighbourhood tells a
+            different story.
+          </p>
+        </div>
+
+        <div className="flex flex-col">
+          {items.map((item) => {
+            const open = openId === item.id;
+            return (
+              <div
+                key={item.id}
+                style={{ backgroundColor: item.color }}
+                className="border-b border-black/20"
+              >
+                <button
+                  type="button"
+                  onClick={() => setOpenId(open ? null : item.id)}
+                  className="w-full flex items-center gap-4 px-5 py-4 text-left"
+                >
+                  <span
+                    style={{ fontWeight: displayWeights[item.id - 1].weight }}
+                    className="w-8 shrink-0 text-2xl tabular-nums"
+                  >
+                    {item.id}
+                  </span>
+                  <span
+                    style={{ fontWeight: displayWeights[item.id - 1].weight }}
+                    className="flex-1 text-2xl sm:text-3xl leading-tight"
+                  >
+                    {item.heading}
+                  </span>
+                  <motion.svg
+                    animate={{ rotate: open ? 180 : 0 }}
+                    transition={{ duration: 0.2 }}
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    className="shrink-0"
+                  >
+                    <path d="m6 9 6 6 6-6" />
+                  </motion.svg>
+                </button>
+                <AnimatePresence initial={false}>
+                  {open && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.25 }}
+                      className="overflow-hidden"
+                    >
+                      <p className="px-5 pb-5 text-base leading-snug">
+                        {item.desc}
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
       <div className="h-16 bg-[#ece6d8]">
 
       </div>

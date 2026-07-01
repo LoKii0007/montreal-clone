@@ -176,11 +176,11 @@ const PinSection = () => {
 
       <section className="hidden lg:flex h-screen overflow-hidden bg-[#ece6d8] text-black">
         <div className="w-[20vw] p-4 md:p-6 flex flex-col justify-between">
-          <h1 className="text-[7rem] leading-[0.9] font-light tracking-tight wrap-break-word">
+          <h1 className="text-[4vw] leading-[0.9] font-light tracking-tight wrap-break-word">
             Must-See Attractions
           </h1>
 
-          <p className="text-[1.75rem] leading-tight">
+          <p className="text-[1.5vw] leading-tight">
             Montréal is a city of contrasts, where centuries-old cobblestone
             meets bold brutalist architecture, and every neighbourhood tells a
             different story.

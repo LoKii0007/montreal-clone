@@ -60,7 +60,7 @@ const Footer = () => {
           {/* Spinning circular mark */}
           <div
             style={{ animationDuration: "10s" }}
-            className="hidden lg:block relative w-20 h-20 shrink-0 animate-spin"
+            className="col-span-2 lg:col-span-1 relative w-20 h-20 shrink-0 animate-spin"
           >
             {Array.from({ length: 8 }).map((_, i) => {
               const imgSize = 22;
@@ -88,10 +88,12 @@ const Footer = () => {
             })}
           </div>
 
-          {columns.map((col) => (
+          {columns.map((col, index) => (
             <div
               key={col.title}
-              className="border-l border-black/40 pl-4 first:border-l-0 first:pl-0 lg:first:border-l lg:first:pl-4"
+              className={`border-black/40 lg:border-l lg:pl-4 ${
+                index % 2 === 0 ? "border-l-0 pl-0" : "border-l pl-4"
+              }`}
             >
               <h3 className="mb-4 text-base">{col.title}</h3>
               <ul className="space-y-1.5 text-base">
@@ -109,7 +111,7 @@ const Footer = () => {
           Neue Montreal
         </h2>
 
-        <div className="flex items-center justify-between border-t border-black/40 pt-3 text-sm">
+        <div className="flex flex-col gap-1 md:flex-row md:items-center md:justify-between border-t border-black/40 pt-3 text-sm">
           <span>
             All rights reserved{" "}
             <strong className="font-semibold">Pangram Pangram</strong>

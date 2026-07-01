@@ -115,14 +115,14 @@ const VelocitySection = () => {
       <div className="flex flex-col gap-26 p-6">
         <div className="col-span-12 lg:col-span-7">
           <p className="text-2xl">Accents &amp; Diacritics</p>
-          <h2 className="mt-8 text-7xl font-bold leading-[0.95] tracking-[-0.02em]">
+          <h2 className="mt-8 text-3xl md:text-5xl lg:text-7xl font-bold leading-[0.95] tracking-[-0.02em]">
             Every mark,
             <br />
             perfectly placed
           </h2>
         </div>
         <div className=" flex justify-end">
-          <p className="text-2xl leading-snug max-w-xl">
+          <p className=" text-sm md:text-2xl leading-snug max-w-xl">
             Inspired by the multicultural energy of Expo 67, where 62 nations
             converged on Montreal, Neue Montreal was built to speak every
             language fluently. Its extensive range of accents and diacritical

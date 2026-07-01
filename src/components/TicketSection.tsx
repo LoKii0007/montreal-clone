@@ -64,12 +64,12 @@ const TicketSection = () => {
         </div>
 
         <div className="grid grid-cols-12 gap-6 pt-10 pb-16">
-          <h2 className="col-span-12 lg:col-span-7 text-5xl md:text-7xl font-bold leading-[0.95] tracking-[-0.02em]">
+          <h2 className="col-span-12 lg:col-span-7 text-3xl md:text-7xl font-bold leading-[0.95] tracking-[-0.02em]">
             Built for the city,
             <br />
             read on the move
           </h2>
-          <p className="col-span-12 lg:col-span-4 lg:col-start-9 text-lg leading-snug">
+          <p className="col-span-12 lg:col-span-4 lg:col-start-9 text-sm md:text-lg leading-snug">
             From platform signage to pocket-sized tickets, Neue Montreal was
             made for urban life. Its legibility holds at every scale whether
             printed on a transit pass or displayed on a departure board. A

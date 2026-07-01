@@ -153,7 +153,7 @@ const DisplayTextSection = () => {
         </div>
       </div>
 
-      <div className="w-full bg-[#f0e7d4] space-y-4 text-black relative flex flex-col md:justify-between p-4 md:p-6">
+      <div className="w-full bg-[#f0e7d4] space-y-4 text-black relative flex flex-col md:flex-row md:justify-between p-4 md:p-6">
         <div className="text-3xl md:text-7xl font-bold leading-none md:max-w-1/2">
           <h1>The Art of Letters</h1>
           <h1>Coming Together</h1>
@@ -194,19 +194,19 @@ const DisplayTextSection = () => {
 
       <div className="bg-[#f0e7d4] w-full py-6"></div>
 
-      <div className="w-full bg-[#f0e7d4] text-black relative flex flex-col gap-10 md:grid md:grid-cols-12 md:grid-rows-[auto_1fr] md:gap-6 p-4 md:p-6 border-t border-black min-h-[90vh]">
-        <h2 className="text-2xl font-bold leading-none md:col-span-3 md:col-start-1 md:row-start-1">
-          Weights
+      <div className="w-full bg-[#f0e7d4] text-black relative flex flex-col justify-between gap-10 md:grid md:grid-cols-12 md:grid-rows-[auto_1fr] md:gap-6 p-4 md:p-6 border-t border-black min-h-[90vh]">
+        <h2 className="text-2xl font-bold flex md:flex-col leading-none md:col-span-3 md:col-start-1 md:row-start-1 ">
+          <p className="pr-1"> Weights </p>
           <br />
-          Chart
+          <p> Chart</p>
         </h2>
 
         <div className="flex items-start md:items-end justify-end text-right md:col-span-9 md:col-start-4 md:row-start-1 md:row-span-2">
           <p
             className={`leading-[0.95] ${
               mode === "Display"
-                ? "text-[12vw] md:text-[8vw] tracking-tight"
-                : "text-[10vw] md:text-[6vw] tracking-normal"
+                ? "text-[10vw] md:text-[7vw] tracking-tight"
+                : "text-[8vw] md:text-[5vw] tracking-normal"
             }`}
             style={{
               fontWeight:

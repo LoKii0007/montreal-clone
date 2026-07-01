@@ -54,10 +54,10 @@ const PointSection = () => {
         <div className="absolute inset-0 z-10 bg-black/20" />
 
         {/* Top + bottom marquee strips */}
-        <div className="absolute top-6 left-0 z-20 w-full">
+        <div className="absolute hidden md:block top-6 left-0 z-20 w-full">
           <DotMarquee direction={1} />
         </div>
-        <div className="absolute bottom-6 left-0 z-20 w-full">
+        <div className="absolute  hidden md:block bottom-6 left-0 z-20 w-full">
           <DotMarquee direction={-1} />
         </div>
 
@@ -77,9 +77,9 @@ const PointSection = () => {
         </div>
 
         {/* Oversized punctuation accent on the right */}
-        <div className="pointer-events-none absolute right-[8%] top-1/2 z-20 hidden -translate-y-1/2 lg:block">
-          <span className="block h-24 w-24 rounded-full bg-[#1fd64a]" />
-          <span className="ml-4 block text-[16vw] leading-[0.4] text-[#1fd64a]">
+        <div className="pointer-events-none absolute hidden md:block md:right-[8%] top-2/3 md:top-1/2 z-20 md:-translate-y-1/2">
+          <span className="block h-10 w-10 md:h-24 md:w-24 rounded-full bg-[#1fd64a]" />
+          <span className="ml-4 block text-[50vw] md:text-[16vw] leading-[0.4] text-[#1fd64a]">
             ,
           </span>
         </div>

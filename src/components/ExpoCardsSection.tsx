@@ -1,20 +1,53 @@
 "use client";
 
 import { motion, useScroll, useTransform, MotionValue } from "motion/react";
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
+
+type Placement = { x: number; rotate: number; y: number };
 
 type CardData = {
   bg: string;
   title: React.ReactNode;
   footer?: React.ReactNode;
-  open: { x: number; rotate: number; y: number };
+  titleBottom?: boolean;
+  open: Placement;
+  openMobile: Placement;
+};
+
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mql = window.matchMedia("(max-width: 767px)");
+    const update = () => setIsMobile(mql.matches);
+    update();
+    mql.addEventListener("change", update);
+    return () => mql.removeEventListener("change", update);
+  }, []);
+
+  return isMobile;
 };
 
 const cards: CardData[] = [
   {
+    bg: "#f9683a",
+    title: (
+      <span className="font-bold leading-none tracking-tight">
+        Neue
+        <br />
+        Montreal
+        <br />
+        Display
+      </span>
+    ),
+
+    open: { x: -260, rotate: -10, y: 40 },
+    openMobile: { x: -55, rotate: 0, y: -40 },
+  },
+  {
     bg: "#ece23a",
     title: (
-      <span className="font-light italic">
+      <span className="font-light text-sm md:text-lg italic leading-none tracking-tight">
         Before
         <br />
         Neue
@@ -23,7 +56,7 @@ const cards: CardData[] = [
       </span>
     ),
     footer: (
-      <span className="font-light italic text-5xl leading-none">
+      <span className="font-light italic text-xl md:text-5xl leading-none">
         There
         <br />
         was
@@ -31,25 +64,13 @@ const cards: CardData[] = [
         Montreal
       </span>
     ),
-    open: { x: -260, rotate: -10, y: 40 },
-  },
-  {
-    bg: "#f9683a",
-    title: (
-      <span className="font-bold">
-        Neue
-        <br />
-        Montreal
-        <br />
-        Display
-      </span>
-    ),
     open: { x: 0, rotate: 2, y: -30 },
+    openMobile: { x: 10, rotate: 0, y: 10 },
   },
   {
     bg: "#25c43f",
     title: (
-      <span className="font-light">
+      <span className="font-light leading-none tracking-tight">
         Neue
         <br />
         Montreal
@@ -57,7 +78,9 @@ const cards: CardData[] = [
         Text
       </span>
     ),
+    titleBottom: true,
     open: { x: 260, rotate: 12, y: 30 },
+    openMobile: { x: 70, rotate: 0, y: 50 },
   },
 ];
 
@@ -65,17 +88,21 @@ const Card = ({
   card,
   index,
   progress,
+  isMobile,
 }: {
   card: CardData;
   index: number;
   progress: MotionValue<number>;
+  isMobile: boolean;
 }) => {
   const start = 0;
   const end = 1;
 
-  const x = useTransform(progress, [start, end], [0, card.open.x]);
-  const y = useTransform(progress, [start, end], [0, card.open.y]);
-  const rotate = useTransform(progress, [start, end], [0, card.open.rotate]);
+  const target = isMobile ? card.openMobile : card.open;
+
+  const x = useTransform(progress, [start, end], [0, target.x]);
+  const y = useTransform(progress, [start, end], [0, target.y]);
+  const rotate = useTransform(progress, [start, end], [0, target.rotate]);
 
   return (
     <motion.div
@@ -84,11 +111,13 @@ const Card = ({
         y,
         rotate,
         backgroundColor: card.bg,
-        zIndex: (cards.length - index) * 10,
+        zIndex: (index <= cards.length / 2 ? index : -index) * 10,
       }}
-      className="absolute h-[68vh] w-[clamp(280px,24vw,440px)] rounded-md p-8  flex flex-col justify-between text-black text-[3.2vw] leading-[0.95] tracking-tight"
+      className="absolute h-[50vh] md:h-[68vh] w-[clamp(180px,17vw,440px)] md:w-[clamp(280px,24vw,440px)] rounded-md p-2 md:p-8  flex flex-col justify-between text-black text-2xl md:text-[3.2vw] leading-none tracking-tight"
     >
-      <div>{card.title}</div>
+      <div className={`leading-none tracking-tight${card.titleBottom ? " mt-auto" : ""}`}>
+        {card.title}
+      </div>
       {card.footer && <div>{card.footer}</div>}
     </motion.div>
   );
@@ -96,6 +125,7 @@ const Card = ({
 
 const ExpoCardsSection = () => {
   const containerRef = useRef(null);
+  const isMobile = useIsMobile();
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
@@ -124,7 +154,13 @@ const ExpoCardsSection = () => {
 
         <div className="relative flex flex-1 items-center justify-center">
           {cards.map((card, i) => (
-            <Card key={i} card={card} index={i} progress={scrollYProgress} />
+            <Card
+              key={i}
+              card={card}
+              index={i}
+              progress={scrollYProgress}
+              isMobile={isMobile}
+            />
           ))}
         </div>
 

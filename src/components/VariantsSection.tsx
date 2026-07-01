@@ -22,8 +22,6 @@ const cards = [
   "/images/card-10.png",
 ];
 
-const CARD_HEIGHT = 560; // 373 x 466 source ratio
-
 const CardMarquee = () => {
   const baseX = useMotionValue(0);
   const x = useTransform(baseX, (v) => `${v}%`);
@@ -48,18 +46,13 @@ const CardMarquee = () => {
             {cards.map((src, i) => (
               <div
                 key={i}
-                style={{
-                  height: CARD_HEIGHT,
-                  width: (CARD_HEIGHT * 373) / 466,
-                }}
-                className="relative shrink-0"
+                className="relative shrink-0 aspect-373/466 h-85 sm:h-110 md:h-140"
               >
                 <Image
                   src={src}
                   alt="Neue Montreal variant poster"
                   fill
-                  sizes="40vw"
-                  className="object-cover"
+                  className="object-contain w-full h-auto"
                 />
               </div>
             ))}
@@ -82,10 +75,10 @@ const VariantsSection = () => {
     <section className="bg-black text-[#ebebeb] w-full py-16 overflow-hidden min-h-[150vh] flex flex-col justify-center items-center">
 
       <div className="px-6 text-center flex flex-col items-center">
-        <h2 className="text-6xl md:text-[7vw] font-bold leading-[0.9] tracking-[-0.03em]">
+        <h2 className="text-7xl md:text-[7vw] font-bold leading-[0.9] tracking-[-0.03em]">
           One font fits all.
         </h2>
-        <p className="mt-8 max-w-2xl text-lg md:text-2xl leading-snug text-white/85">
+        <p className="mt-8 max-w-2xl text-sm md:text-2xl leading-snug text-white/85">
           There are also alternative versions: Squeezed tightens the
           letterforms, while Mono uses fixed-width spacing for a more rigid
           feel.
